@@ -22,10 +22,14 @@ If you need to reset the data set delete the SqLite data base or drop the tables
 I recommend you use a real SQL Db instead of the in memory or the local sql store, so you can browse the original data to ensure the data set is valid (I think it is but maybe somebody should verify).
 
 ## What you should see
-If you run the first once the database has been created you should see the test fail. The full album list should be 91 records which is correct. However, you will end up with 38 records of uninitialized Artist records which is a fail. 
+If you run the first test once the database has been created you should see the test fail. The full album list should be 91 records which is correct. However, you will end up with 38 records of uninitialized Artist records which is a fail. 
+
+The problem is that the first album that matches an Artist record shows a valid Artist record, but any subsequent albums by that same Artist will have the Artist record empty - not null - but empty with values at their defaults.
 
 ## Run the same thing in EF Core 2.2.6
-Now run the same thing with EF Core 2.2.6. Go into the project file and uncomment the 2.2.6 EF Core libraries. Clean and rebuild the project.
+Now run the same thing with EF Core 2.2.6. Go into the project file and uncomment the 2.2.6 EF Core libraries and comment the 3.0 libraries. 
+
+Clean and rebuild the project.
 
 ```xml
 <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
@@ -33,4 +37,4 @@ Now run the same thing with EF Core 2.2.6. Go into the project file and uncommen
 <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
 ```
 
-Now when you run the test passes.
+Now when you run the test it passes with no empty Artist records created.
