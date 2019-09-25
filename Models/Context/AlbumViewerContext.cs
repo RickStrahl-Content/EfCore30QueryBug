@@ -8,14 +8,12 @@ namespace AlbumViewerBusiness
     public class AlbumViewerContext : DbContext
     {
         public string ConnectionString { get; set; } =
-            "server=.;database=AlbumViewer4;integrated security=true;MultipleActiveResultSets=true;App=AlbumViewer";
+            "server=.;database=AlbumViewer2;integrated security=true;MultipleActiveResultSets=true;App=AlbumViewer";
 
         public bool useSqLite = true;
 
         public AlbumViewerContext(DbContextOptions options) : base(options)
-        {         
-            
-        }
+        {   }
 
         public AlbumViewerContext()
         { }
